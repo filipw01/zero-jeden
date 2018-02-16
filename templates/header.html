@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="pl">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>{{title}}</title>
+<!--Our stylesheet -->
+<link rel="stylesheet" href="{{url_for('static',filename='css/ourstyles.css')}}">
+<!-- Latest compiled and minifiled CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</head>
+<header>
+  <nav class="navbar">
+  <div>
+    <a href="/">
+      <img style="height: 100px;" src="{{url_for('static', filename='images/logo.jpg')}}">
+    </a>
+  </div>
+  <div align="right">
+    <a href="/contact/"><button class="btn btn-primary">Skontaktuj się z nami</button></a>
+    <a>Wspomóż rozwój strony</a>
+
+  {% if session.logged_in %}
+    <a href="/logout/"><button class="btn btn-primary">Wyloguj</button></a>
+  {% else %}
+  <!--Beginning of register form-->    
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align: left;">
+      <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h4 style="text-align: left;" class="modal-title" id="exampleModalLabele">Zarejestruj się</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+
+            <form method=post action="/register/">
+  <dl>
+
+  <dt><label for="username">Nazwa użytkownika</label>
+  <dd><input id="username" name="username" type="text" value=""></dd>
+
+  <dt><label for="email">Adres e-mail</label>
+  <dd><input id="email" name="email" type="text" value=""></dd>
+
+  <dt><label for="password">Nowe hasło</label>
+  <dd><input id="password" name="password" type="password" value=""></dd>
+
+  <dt><label for="confirm">Powtórz hasło</label>
+  <dd><input id="confirm" name="confirm" type="password" value=""></dd>
+  <dt><label for="accept_tos">Akceptuję <a href="/about/tos" target="blank">Warunki użytkowania</a> i <a href="/about/privacy-policy" target="blank">Politykę prywatności</a> (zaktualizowana 17 stycznia 2018r.) <input id="accept_tos" name="accept_tos" type="checkbox" value="y"></label>
+
+  </dl>
+              <p><input class="btn btn-primary" type=submit value="Zarejestruj się"></p>
+            </form>
+
+        </div>
+        </div>
+
+      </div>
+      </div>
+    </div>
+<!--The end of register form, the beginning of login form-->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align: left;">
+      <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h4 style="text-align: left;" class="modal-title" id="exampleModalLabele">Zaloguj się</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+
+            <form method=post action="/login/">
+  <dl>
+
+  <dt><label for="username">Nazwa użytkownika</label>
+  <dd><input autofocus id="username" name="username" type="text" value=""></dd>
+
+  <dt><label for="password">Hasło</label>
+  <dd><input id="password" name="password" type="password" value=""></dd>
+
+  </dl>
+              <p><input class="btn btn-primary" type=submit value=Zaloguj></p>
+            </form>
+
+        </div>
+        </div>
+
+      </div>
+      </div>
+    </div>
+  <!-- The end of login form -->
+    <a role="presentation" class="active" data-toggle="modal" data-target="#login" href="#"><button class="btn btn-primary">Zaloguj</button></a>
+    <a role="presentation" class="active" data-toggle="modal" data-target="#register" href="#"><button class="btn btn-primary"> Zarejestruj się</button></a>
+  {% endif %}
+  </div>
+</nav>
+</header>
+<body>
+  <div align="center">
+    {% with messages = get_flashed_messages()%}
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible" role="alert" style="max-width: 85%">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+            {{message}}
+        </div>
+        {% endfor %}
+	{% endif %}
+      {% endwith %}
+    {% block body %}
+    {% endblock %}
+  </div>
+</body>
+</html>

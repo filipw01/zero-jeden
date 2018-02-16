@@ -1,0 +1,115 @@
+{% extends "header.html" %}
+{% block body %}
+<body>
+	 <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script> 
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
+
+	<h1>Cieszymy się, że zainteresowałeś się naszą propozycją. I mamy nadzieję, że do nas dołączysz</h1>
+	<div style="text-align: left; margin-left: 30px;">
+		<form method="post" >Który z tych tematów odpowiada tobie? (możesz zaznaczyć więcej niż 1 pozycję)<br>
+			<input type="checkbox" name="programming" value="programming" id="programming"> Programowanie</input><br>
+			<input type="checkbox" name="net" value="net" id="net"> Sieci</input><br>
+			<input type="checkbox" name="hardware" value="hardware" id="hardware"> Hardware</input><br>
+  			<input type="checkbox" name="mobile" value="mobile" id="mobile"> Platformy mobilne</input><br>
+  			<input type="checkbox" name="os" value="os" id="os"> Systemy operacyjne</input><br>
+  			<input type="checkbox" name="other" value="other" id="other" onclick="text_area()"/> Inne (wypisz po przecinku)
+  			<textarea disabled="true" name="other_content" id="textarea" rows="1" cols="10"></textarea>
+  			<br>
+  			<input type="button" value="Kontynuuj" onclick="proceed()"/> 
+		
+
+		<div onclick="text_area()" id="pref1" style="display: none;">Czy czymś interesujesz się szczególnie jeżeli chodzi o "Programowanie"?
+			<input type="radio" name="pl" value="java"> Java</input>
+			<input type="radio" name="pl" value="python"> Python</input>
+			<input type="radio" name="pl" value="C"> Rodzina C (C,C#,C++)</input>
+  			<input type="radio" name="pl" value="php"> PHP</input>
+  			<input type="radio" name="pl" id="otherP" value="otherP" onclick="text_area()"> Czymś innym (napisz)</input>
+  			<input type="text" name="otherP_content" id="inP" disabled="true" >
+  			<input type="radio" name="pl" value="nothing"> Niczym szczególnym</input> 
+		</div>
+		<div onclick="text_area()" id="pref2" style="display: none;">Czy czymś interesujesz się szczególnie jeżeli chodzi o "Sieci"?
+			<input type="radio" name="s" value="programming"> Bezpieczeństwo</input>
+			<input type="radio" name="s" value="net"> Sieci lokalne</input>
+			<input type="radio" name="s" value="hardware"> Internet</input>
+  			<input type="radio" name="s" value="mobile"> Protokoły</input>
+  			<input type="radio" name="s" value="otherS" id="otherS" onclick="text_area()"> Czymś innym (napisz)</input>
+  			<input type="text" name="otherS_content" disabled="true" id="inS"> 
+  			<input type="radio" name="s" value="nothing"> Niczym szczególnym</input>
+		</div>
+		<div onclick="text_area()" id="pref3" style="display: none;">Czy czymś interesujesz się szczególnie jeżeli chodzi o "Hardware"?
+			<input type="radio" name="h" value="CPU"> Procesory</input>
+			<input type="radio" name="h" value="GPU"> Karty graficzne</input>
+			<input type="radio" name="h" value="disk"> Dyski Twarde</input>
+  			<input type="radio" name="h" value="IO"> Urządzenia I/O</input>
+  			<input type="radio" name="h" id="otherH" value="otherH" onclick="text_area()"> Czymś innym (napisz)</input>
+  			<input type="text" id="inH" name="otherH_content" disabled="true"> 
+  			<input type="radio" name="h" value="nothing"> Niczym szczególnym</input>
+		</div>
+		<div onclick="text_area()" id="pref4" style="display: none;">Czy czymś interesujesz się szczególnie jeżeli chodzi o "Platformy mobilne"?
+			<input type="radio" name="pm" value="android"> Android</input>
+			<input type="radio" name="pm" value="ios"> iOS</input>
+			<input type="radio" name="pm" value="xiaomi"> Xiaomi</input>
+  			<input type="radio" name="pm" value="samsung"> Samsung</input>
+  			<input type="radio" name="pm" id="otherPM" value="otherPM" onclick="text_area()"> Czymś innym (napisz)</input>
+  			<input type="text" name="otherPM_content" id="inPM" disabled="true"> 
+  			<input type="radio" name="pm" value="nothing"> Niczym szczególnym</input>
+		</div>
+		<div onclick="text_area()" id="pref5" style="display: none;">Czy czymś interesujesz się szczególnie jeżeli chodzi o "Systemy operacyjne"?
+			<input type="radio" name="so" value="windows"> Windows</input>
+			<input type="radio" name="so" value="linux"> Linux</input>
+			<input type="radio" name="so" value="ubuntu"> Ubuntu</input>
+  			<input type="radio" name="so" value="debian"> Debian</input>
+  			<input type="radio" name="so" id="otherSO" value="otherSO" onclick="text_area()"> Czymś innym (napisz)</input>
+  			<input type="text" name="otherSO_content" id="inSO" disabled="true"> 
+  			<input type="radio" name="so" value="nothing"> Niczym szczególnym</input>
+		</div>
+		<div  id="submit_div" style="text-align:center; display: none;">
+			<textarea name="desc" id="desc" onfocus="this.select()">Napisz coś o sobie (chociażby imię i nazwisko)</textarea>
+			<br>
+			<input onclick="this.select()" style="width: 360px" type="email" name="email" value="Podaj maila byśmy mogli się z Tobą skontaktować">
+			<br>
+			<input type="submit" value="Wyślij">
+		</div>
+		</form>
+	</div>
+<p style="text-align: center;">{{content}}</p>
+		
+
+</body>
+{% endblock %}

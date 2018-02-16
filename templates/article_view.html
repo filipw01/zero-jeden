@@ -1,0 +1,16 @@
+{% extends "header.html" %}
+{% block body %}
+{% block content %}
+{% endblock %}
+
+<div style="margin-top: 15px;">
+	<div>
+		<div style="margin-left: 5%; margin-right: 5%" align="left">
+			<h2><b>{{title}}</b></h2>
+			<p>{{text|safe}}</p>
+			<a href="./like/"><button onclick="like()"  class="btn btn-primary"><span>Polub</span></button></a>
+			<span id="count">Polubień {{likes}}</span>
+		</div>
+	</div>
+</div>
+{% endblock %}

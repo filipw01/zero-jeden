@@ -1,0 +1,43 @@
+<html>
+
+
+<head>
+
+<title>Adam Korba 1E</title>
+<link rel="stylesheet" href="styl.css" type="text/css" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+</head>
+
+
+<body>
+
+<header><p><strong>Nazywam siê Adam Korba jestem uczniem klasy 1E Technikum Komunikacji
+</strong></p></header>
+
+<section><article><p> Informacje o mnie
+<ul>
+<li>Mam 16 lat w marcu koñczê 17</li>
+<li>Mieszkam w Poznaniu</li>
+<li>Mam 2 siostry</li>
+<li>Programowanie to moje hobby</li>
+<li>Lubiê muzykê a mój ulubiony instrument to pianino, któremu poœwiêcona jest ta strona.
+</ul>
+</p></article></section>
+
+<aside><p>
+MENU
+
+<p><a href="Historia.html">Historia Pianina</a></p>
+<p><a href="Pianisci.html">S³awni pianiœci</a></p>
+<p><a href="Rodzaje.html" >Rodzaje pianin</a></p>
+
+</p></aside>
+
+<footer><p>Ta strona zosta³a utworzona na lekcje informatyki
+</footer></p>
+
+</body>
+
+
+</html>

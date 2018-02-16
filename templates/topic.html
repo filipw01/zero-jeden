@@ -1,0 +1,27 @@
+{% extends "header.html" %}
+{% block body %}
+{% block content %}
+{% endblock %}
+<div class="color-two" style="text-align: center;">
+  <img style="height: 100px;" src="{{imgSource}}">
+</div>
+<div class="color-one" style='text-align: center;''>
+  <h1 style="display: inline-block; background-color: white; margin-top: 8px;"> Witamy w dziale {{title}}</h1> 
+</div>
+<div style="margin-top: 15px;">
+	{% for article in articles %}
+	<div id="article_container">
+		<div id="article_content" align="left">
+			<a href="{{article[3]}}">
+				<h2>{{article[0]}}</h2>
+			</a>
+			<p>{{article[1][0:70]}}</p>
+			<p>Polubień {{likes[loop.index-1]}}</p>
+		</div>
+		<div class="hero-image">
+			<img id="article_img" src="{{article[4]}}">
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}
