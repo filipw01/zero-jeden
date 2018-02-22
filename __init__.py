@@ -4,7 +4,7 @@ from os import path
 import gc
 from functools import wraps
 from flask import Flask, render_template, flash, request, redirect, url_for, session, send_file
-from content_management import Content, python_content, gpu_content, likes_setter, likes_getter, kotlin_content
+from content_management import Content, python_content, gpu_content, kotlin_content
 from pymysql import escape_string as thwart
 from passlib.hash import sha256_crypt
 from wtforms import Form, validators, StringField, PasswordField, BooleanField

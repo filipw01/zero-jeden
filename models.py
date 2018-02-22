@@ -9,7 +9,7 @@ from __init__ import db
 
 class Like(db.Model):
     """
-    Komentarze
+    Polubienia
     """
     __tablename__ = 'likes'
     id = Column(Integer, autoincrement=True, primary_key=True)

@@ -1,9 +1,10 @@
 __author__ = 'Filip Wachowiak'
 
 import gc
+from models import Like
 from functools import wraps
 from flask import Flask, render_template, flash, request, redirect, url_for, session, send_file
-from content_management import Content, python_content, gpu_content, likes_setter, likes_getter, kotlin_content
+from content_management import Content, python_content, gpu_content, kotlin_content
 from pymysql import escape_string as thwart
 from passlib.hash import sha256_crypt
 from wtforms import Form, validators, StringField, PasswordField, BooleanField
@@ -11,12 +12,24 @@ from dbconnect import connection
 from flask_mail import Mail, Message
 from __init__ import app
 from __init__ import db
-from models import Like
 
 GROUP_LIST = Content()
 PYTHON_ARTICLES = python_content()
 GPU_ARTICLES = gpu_content()
 KOTLIN_ARTICLES = kotlin_content()
+
+like = Like()
+
+def likes_setter(article, username):
+    if not Like.query.filter_by(username=username, post=article[0]).first():
+        like.post=article[0]
+        like.username=username
+        db.session.add(like)
+        db.session.commit()
+    
+
+def likes_getter(article):
+    return Like.query.filter_by(post=article[0]).count()
 
 
 def login_required(func):
@@ -38,7 +51,7 @@ def logout():
     session.clear()
     flash("Zostałeś poprawnie wylogowany.")
     gc.collect()
-    return redirect(url_for('homepage'))
+    return redirect(request.referrer)
 
 
 @app.route('/register/', methods=["GET", "POST"])
@@ -339,6 +352,7 @@ def article_view(topic, article_name, action):
                 elif action == "like":
                     article_likes = likes_getter(article)
                     flash("Musisz być zalogowany aby polubić ten artykuł")
+                    return redirect("/" + topic + "/articles/" + article_name)
                 else:
                     article_likes = likes_getter(article)
 
@@ -354,6 +368,7 @@ def article_view(topic, article_name, action):
                 elif action == "like":
                     article_likes = likes_getter(article)
                     flash("Musisz być zalogowany aby polubić ten artykuł")
+                    return redirect("/" + topic + "/articles/" + article_name)
                 else:
                     article_likes = likes_getter(article)
 
@@ -369,6 +384,7 @@ def article_view(topic, article_name, action):
                 elif action == "like":
                     article_likes = likes_getter(article)
                     flash("Musisz być zalogowany aby polubić ten artykuł")
+                    return redirect("/" + topic + "/articles/" + article_name)
                 else:
                     article_likes = likes_getter(article)
                 article_title = article[0]

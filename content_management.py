@@ -40,7 +40,7 @@ python_articles = (("Tytuł artykułu",
 
 kotlin_articles = (("Dlaczego Kotlin jest przyszłością Androida",
                     "Czyli trochę o tym, dlaczego warto przesiąść się z Javy na Kotlin",
-                    "<h5>Artykuł w budowie</h5> Od dłuższego już czasu (a dokładniej od maja 2017 roku) Kotlin jest wspierany przez Google jako " +
+                    "Od dłuższego już czasu (a dokładniej od maja 2017 roku) Kotlin jest wspierany przez Google jako " +
                     "oficjalny język programowania na Androidzie. Jednak co takiego się stało, że Google postanowił " +
                     "wprowadzić oficjalnie drugi androidowy język?"+
                     """ <div align="center"><img style="width: 20vw; padding-top:10px;padding-bottom:10px" src="http://tkgf.nazwa.pl:5003/static/images/articles/kotlin/kotlin_eats_java.png"></div> """ +
@@ -101,22 +101,7 @@ gpu_articles = (("Nowy TITAN już nie do gier",
 
 def python_content():
     return python_articles
-
-
-def likes_setter(article, username):
-    with open('../zero-jeden/comments/'+article[0]+'.txt', 'a+') as file:
-        file.seek(0)
-        data = file.read().splitlines()
-        if username not in data and username is not '':
-            file.write(username+'\n')
-
-def likes_getter(article):
-    with open('../zero-jeden/comments/'+article[0]+'.txt', 'a+') as file:
-        file.seek(0)
-        data = file.read().splitlines()
-    likes = len(data)
-    return likes
-
+    
 def gpu_content():
     return gpu_articles
 
