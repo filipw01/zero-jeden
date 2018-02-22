@@ -3,7 +3,7 @@ import pymysql
 def connection():
     conn = pymysql.connect(host='localhost',
                             user='flask',
-                            password='b@z@d@nych',
+                            password='',
                             db='flask',
                             charset='utf8mb4',
                             cursorclass=pymysql.cursors.DictCursor)

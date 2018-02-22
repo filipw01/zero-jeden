@@ -1,6 +1,3 @@
-import json
-
-
 def Content():
     topic_dict = (("Programowanie", (
         ("Python", "/python/", "http://tkgf.nazwa.pl:5003/static/images/python.jpg"),
@@ -41,6 +38,38 @@ python_articles = (("Tytuł artykułu",
                     )
                    )
 
+kotlin_articles = (("Dlaczego Kotlin jest przyszłością Androida",
+                    "Czyli trochę o tym, dlaczego warto przesiąść się z Javy na Kotlin",
+                    "<h5>Artykuł w budowie</h5> Od dłuższego już czasu (a dokładniej od maja 2017 roku) Kotlin jest wspierany przez Google jako " +
+                    "oficjalny język programowania na Androidzie. Jednak co takiego się stało, że Google postanowił " +
+                    "wprowadzić oficjalnie drugi androidowy język?"+
+                    """ <div align="center"><img style="width: 20vw; padding-top:10px;padding-bottom:10px" src="http://tkgf.nazwa.pl:5003/static/images/articles/kotlin/kotlin_eats_java.png"></div> """ +
+                    "<ul><li>Kod napisany w Kotlinie jest zwykle dużo "+
+                    "<b>czytelniejszy</b> od tego napisanego w Javie, co przede wszystkim umożliwia prosty "+
+                    "start z Androidem dla żółtodziobów, ale również umożliwia łatwiejsze zrozumienie naszego kodu "+
+                    "przez innych programistów </li><li>Kotlin można wysoce <b>zintegrować</b> z Javą. Chcąc "+
+                    "zbudować naszą aplikację nie trzeba jej całkowicie przebudowywać, można napisać część"+
+                    "w Kotlinie, a resztę pozostawić w Javie. Natomiast klasy Kotlina czerpią prosto z API Javy."+
+                    "</li><li>Sam język nie jest jedynie chwilowym zachwytem. Wpiera go Google, a rozwija firma "+
+                    "JetBraint, więc o przyszłość Kotlina nie ma się na razie co martwić</li></ul> Największą "+
+                    "wadą Kotlina wydaje się być mała społeczność i mała ilość kodu jak dotąd napisanego. Jednak "+
+                    "developerzy zachwalają Kotlina pomimo tego, a samego wprowadzenia nowego języka raczej nie hejtuje nikt."+
+                    " Nie ma się temu co dziwić, w końcu nikogo to nie ogranicza, a daje wybór(ja tam wolę mieć wybór niż go "+
+                    "nie mieć, nie wiem jak wy). Spójrzmy na bardziej konkretne rzeczy, które "+
+                    "wprowadza Kotlin <ul><li><b>Null safety</b> - rzecz, której brak był jednym z większych koszmarów wszystkich"+
+                    "osób używających Javy na Androidzie i nie tylko. W dużym skrócie null safety pozwala nam zedeklarować czy "+
+                    "konkretna zmienna może być nullem, czy też nie. Oraz wiele innych wygodnych obsłużeń nulla, tak by "+
+                    "programista nie musiał stykać się zbyt często ze znienawidzonym <b>NullPointerException</b>em.</li>"+
+                    "<li>Sam Kotlin jest multiparadygmatywny co oznacza, że możesz pisać na przykład zarówno funkcyjnie "+
+                    "jak i klasowo</li></ul> Nieraz denerwowała Cię Java? Kotlin to powiew świeżości dla starego wyjadacza "+
+                    "Javy. Rozwiązuje również wiele innych błędów i problemów Javy, które nie mogły zostać rozwiązane głownie "+
+                    "ze względu na to, że Java jest Javą i Javą pozostanie. <b>Dlaczego więc nie spróbować Kotlina już dziś?"+
+                    ".</b> No już jazda,"+""" <a href="https://kotlinlang.org/docs/reference/">"""+"dokumentacja</a> czeka"+
+                    """<br><h5 style="text-align:right">Autor: Filip Wachowiak</h5>""",
+                    "/kotlin/articles/Dlaczego Kotlin jest przyszłością Androida",
+                    "http://tkgf.nazwa.pl:5003/static/images/articles/kotlin/kotlin_eats_java.png"),
+                    )
+
 gpu_articles = (("Nowy TITAN już nie do gier",
                  "TITAN V",
                  "„Najpotężniejsza, jaką kiedykolwiek stworzono”" +
@@ -74,28 +103,22 @@ def python_content():
     return python_articles
 
 
-def likes_setter(article, username=''):
-    likes = 0
-    for python_title in python_articles:
-        if article[0] == python_title[0]:
-            with open('../zero-jeden/comments/'+article[0]+'.txt', 'a+') as file:
-                file.seek(0)
-                data = file.read().splitlines()
-                if username not in data and username is not '':
-                    file.write(username+'\n')
-                likes = len(data)
+def likes_setter(article, username):
+    with open('../zero-jeden/comments/'+article[0]+'.txt', 'a+') as file:
+        file.seek(0)
+        data = file.read().splitlines()
+        if username not in data and username is not '':
+            file.write(username+'\n')
 
-    for gpu_title in gpu_articles:
-        if article[0] == gpu_title[0]:
-            with open('../zero-jeden/comments/'+article[0]+'.txt', 'r+') as file:
-                file.seek(0)
-                data = file.read().splitlines()
-                if username not in data and username is not '':
-                    file.write(username + '\n')
-                likes = len(data)
+def likes_getter(article):
+    with open('../zero-jeden/comments/'+article[0]+'.txt', 'a+') as file:
+        file.seek(0)
+        data = file.read().splitlines()
+    likes = len(data)
     return likes
-
-
 
 def gpu_content():
     return gpu_articles
+
+def kotlin_content():
+    return kotlin_articles

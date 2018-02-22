@@ -1,3 +1,7 @@
+.carousel-caption {
+  	background: rgba(0,0,0,0.5); 
+}
+
 #section{
  background-color:lightgray;
  margin-right: 20px;
